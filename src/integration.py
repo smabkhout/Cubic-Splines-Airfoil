@@ -47,7 +47,7 @@ def integration_n_simpson(f,a,b,n):
        d+=f(l[i])
     return (h/6)*(f(a)+f(b))+(2*h/3)*s+(h/3)*d
 
-
+#Question 2:
 
 
 

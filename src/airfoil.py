@@ -1,5 +1,6 @@
 import numpy as np
 import matplotlib.pyplot as plt
+import subprocess
 
 def cubic_spline(x, y):
     n = len(x) - 1  # Nombre de segments
@@ -44,23 +45,54 @@ def evaluate_spline(x_vals, x, coefficients):
             if x[i] <= x_val <= x[i + 1]: # la liste x contient les intervalles par selon lesquels la spline est definie
                 a, b, c, d = coefficients[i]
                 dx = x_val - x[i]
-                count += 1
                 y_vals.append(a + b * dx + c * dx**2 + d * dx**3)
                 break
     return np.array(y_vals)
 
-x = np.array([1, 2, 2.5, 3.5, 5])
-y = np.array([2, 3, 5, 4, 6])
+def read_numpy_blocks_from_script(file_path, script_path="./script.sh"):
+    result = subprocess.run([script_path], input=open(file_path).read(), text=True, capture_output=True)
+    output = result.stdout.strip()
+    
+    arrays = []
+    for line in output.splitlines():
+        line = line.strip()
+        if line.startswith('[') and line.endswith(']'):
+            numbers = np.fromstring(line.strip('[]'), sep=',')
+            arrays.append(numbers)
+    return arrays
+
+arrays = read_numpy_blocks_from_script("file.txt")
+
+extrados_x, extrados_y = arrays[2], arrays[3]
+intrados_x, intrados_y = arrays[4], arrays[5]
+
+x = extrados_x
+y = extrados_y
 
 # Calcul des coefficients de la spline cubique
 coefficients = cubic_spline(x, y)
 
 # Évaluation de la spline sur un domaine plus dense
-x_dense = np.linspace(1, 5, 100)
+x_dense = np.linspace(extrados_x[0], extrados_x[-1], 10000)
 y_dense = evaluate_spline(x_dense, x, coefficients)
+
+
+# Calcul des coefficients de la spline cubique pour l'intrados
+coefficients_intra = cubic_spline(intrados_x, intrados_y)
+
+# Évaluation sur un domaine plus dense
+x_intra_dense = np.linspace(intrados_x[0], intrados_x[-1], 100)
+y_intra_dense = evaluate_spline(x_intra_dense, intrados_x, coefficients_intra)
+
+# Affichage de l'intrados
+plt.plot(x_intra_dense, y_intra_dense, label="Spline intrados", color='green')
+plt.scatter(intrados_x, intrados_y, color='orange', label="Points intrados")
+
+
 
 # Affichage du résultat
 plt.scatter(x, y, color='red', label="Points donnés")
 plt.plot(x_dense, y_dense, label="Spline cubique", color='blue')
 plt.legend()
+plt.axis('equal')
 plt.show()

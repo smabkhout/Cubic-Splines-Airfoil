@@ -1,18 +1,23 @@
 #!/bin/bash
 
-# Texte d'entrée
-input="[-0.000433 0.001157 0.002557 0.003879 0.005192 0.006498 0.007775
-0.009031 0.01027 0.011485 0.012691 0.013896 0.015104 0.016318 0.017543  0.018783  0.020032  0.021282  0.022538  0.023809  0.025097
-0.0264 0.027711 0.029032 0.030364 0.031706 0.033054 0.034404
-0.035755 0.037108 0.038465  0.039819  0.041164  0.042492  0.043798
-  0.045077  0.046323  0.047531  0.048692  0.0498    0.050846  0.051823
-  0.052727  0.053556  0.054302  0.054959  0.055536  0.056023  0.056358
-  0.056517  0.056519  0.056385  0.056077  0.055531  0.054731  0.053774
-  0.05264   0.051228  0.049499  0.04532   0.039973  0.030303  0.023
-  0.0158    0.0099    0.0051    0.002   ]"
+# Lire tout le contenu du fichier dans une seule variable
+content=$(cat file.txt)
 
-# Suppression des crochets, remplacement des espaces par des virgules, puis réajout des crochets
-output="[$(echo "$input" | tr -d '[]' | tr ' ' ',')]"
+# Remplacer les retours à la ligne pour que tout soit sur une seule ligne
+content=$(echo "$content" | tr '\n' ' ')
 
-# Affichage du résultat
-echo "$output"
+# Ajouter un espace avant chaque crochet ouvrant pour bien séparer
+content=$(echo "$content" | sed 's/\[/ \[/g')
+
+# Découper par crochet ouvrant
+IFS='[' read -ra blocks <<< "$content"
+
+for block in "${blocks[@]}"; do
+    if [[ -n "$block" ]]; then
+        # Supprimer crochets fermants, puis remplacer espaces par virgules
+        clean=$(echo "$block" | sed 's/]//g' | tr -s ' ' | sed 's/^\s*//;s/\s*$//' | tr ' ' ',')
+
+        # Remettre les crochets
+        echo "[$clean]"
+    fi
+done

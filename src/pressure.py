@@ -21,11 +21,11 @@ def compute_pressure_map(f, h_min, h_max, nx=100, ny=100, P_static=101325):
     for i in range(nx):
         for j in range(ny):
             
-            if is_in_airfoil(x, y, f):
+            if is_in_airfoil(i, j, f):
                 continue
             
             #chercher lambda
-            compute_lambda(x, y, f, h_max)
+            compute_lambda(i, j, f, h_max)
             
             #calculer la vitesse nécessaire pour dét la pression
             v = compute_v()
@@ -41,7 +41,7 @@ def is_in_airfoil(x, y, f):
 
 def compute_lambda(x, y, f, h_max):
     """Find the λ parameter for the streamline passing through (x,y)"""
-    pass
+    return (y - f(x)) / (3*h_max - f(x)) 
 
 def compute_v():
     """Calcule la vitesse nécessaire pour dét la pression"""

@@ -3,6 +3,14 @@ import matplotlib.pyplot as plt
 import subprocess
 
 def cubic_spline(x, y):
+    """
+    Calcule les coefficients de la spline cubique pour les points donnés.
+    Paramètres: 
+    - x: tableau des abscisses
+    - y: tableau des ordonnées
+    Retourne:
+    - coefficients: liste de tuples (a, b, c, d) pour chaque segment
+    """
     n = len(x) - 1  # Nombre de segments
     h = np.diff(x)  # Pas entre les points
     alpha = np.zeros(n)
@@ -37,6 +45,15 @@ def cubic_spline(x, y):
 
 # Fonction pour évaluer la spline à un point donné # On va evaluer les ordonnees des points de x_vals
 def evaluate_spline(x_vals, x, coefficients):
+    """
+    Évalue la spline cubique aux points x_vals.
+    Paramètres:
+    - x_vals: tableau des points à évaluer
+    - x: tableau des abscisses
+    - coefficients: liste de tuples (a, b, c, d) pour chaque segment
+    Retourne:
+    - y_vals: tableau des ordonnées évaluées
+    """
     n = len(x) - 1
     y_vals = []
     for x_val in x_vals:
@@ -50,6 +67,14 @@ def evaluate_spline(x_vals, x, coefficients):
     return np.array(y_vals)
 
 def read_numpy_blocks_from_script(file_path, script_path="./script.sh"):
+    """
+    Lit les blocs de données numpy à partir d'un script shell.
+    Paramètres:
+    - file_path: chemin vers le fichier contenant les données
+    - script_path: chemin vers le script shell à exécuter
+    Retourne:
+    - arrays: liste de tableaux numpy extraits du script
+    """
     result = subprocess.run([script_path], input=open(file_path).read(), text=True, capture_output=True)
     output = result.stdout.strip()
     

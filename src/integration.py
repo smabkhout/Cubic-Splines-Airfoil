@@ -60,6 +60,16 @@ def integration_n_trapezoid( f, a, b, N ):
 
 #Intégrale: middle point, Simpson
 def integration_n_middle_point(f,a,b,n):
+    """
+    Calcule l'intégrale de f sur [a,b] en utilisant la méthode du point milieu
+    Paramètres:
+    - f: fonction à intégrer
+    - a: borne inférieure de l'intervalle   
+    - b: borne supérieure de l'intervalle
+    - n: nombre de sous-intervalles
+    Retourne:
+    - l'intégrale de f sur [a,b]
+    """
     #calcul de largeur des sous intervalles
     h=(b-a)/n
     #construction d'une liste des images  des noeuds de quadrature
@@ -70,6 +80,16 @@ def integration_n_middle_point(f,a,b,n):
     return s*h   
 
 def integration_n_simpson(f,a,b,n):
+    """
+    Calcule l'intégrale de f sur [a,b] en utilisant la méthode de Simpson
+    Paramètres:
+    - f: fonction à intégrer
+    - a: borne inférieure de l'intervalle
+    - b: borne supérieure de l'intervalle
+    - n: nombre de sous-intervalles
+    Retourne:
+    - l'intégrale de f sur [a,b]
+    """
      #calcul de largeur des sous intervalles
     h=(b-a)/(n+1)
     #construction d'une liste  des noeuds de quadrature
@@ -112,6 +132,9 @@ def integration_epsilon( f, a, b, eps, meth ):
 #Question 3
 #tests_sur_un_polynôme_de_degré_4
 def poly_4(x):
+    """
+    Calcule la valeur du polynôme de degré 4
+    """
     return x**4+3*x**2+9*x-3
 def test_poly(a,b,eps):
     print("tests sur le polynôme x⁴+3x²+9x-3 entre",a,"et",b)

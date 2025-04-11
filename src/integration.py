@@ -1,7 +1,19 @@
+import math as math
 # Question 1
 # Intégrale: left and right rectangle,trapezoid
 
 def integration_n_left_rec( f, a, b, N ):
+    """
+    Calcule l'intégrale de f sur [a,b] en utilisant la méthode des rectangles à gauche
+    Paramètres: 
+    - f: fonction à intégrer
+    - a: borne inférieure de l'intervalle
+    - b: borne supérieure de l'intervalle
+    - N: nombre de sous-intervalles
+    Retourne:
+    - l'intégrale de f sur [a,b]
+    """
+    #calcul de la largeur des sous intervalles
     I=0
     h = (b-a)/N
     for i in range(N):
@@ -9,6 +21,16 @@ def integration_n_left_rec( f, a, b, N ):
     return h * I
 
 def integration_n_right_rec( f, a, b, N ):
+    """
+    Calcule l'intégrale de f sur [a,b] en utilisant la méthode des rectangles à gauche
+    Paramètres: 
+    - f: fonction à intégrer
+    - a: borne inférieure de l'intervalle
+    - b: borne supérieure de l'intervalle
+    - N: nombre de sous-intervalles
+    Retourne:
+    - l'intégrale de f sur [a,b]
+    """
     I=0
     h = (b-a)/N
     for i in range(1, N+1):
@@ -16,6 +38,16 @@ def integration_n_right_rec( f, a, b, N ):
     return h * I
 
 def integration_n_trapezoid( f, a, b, N ):
+    """
+    Calcule l'intégrale de f sur [a,b] en utilisant la méthode des trapèzes
+    Paramètres: 
+    - f: fonction à intégrer
+    - a: borne inférieure de l'intervalle
+    - b: borne supérieure de l'intervalle
+    - N: nombre de sous-intervalles
+    Retourne:
+    - l'intégrale de f sur [a,b]
+    """
     I=0
     h = (b-a)/N
     for i in range(1, N):
@@ -48,7 +80,29 @@ def integration_n_simpson(f,a,b,n):
     return (h/6)*(f(a)+f(b))+(2*h/3)*s+(h/3)*d
 
 #Question 2:
+def integretion_epsilon( f, a, b, eps, meth ):
+    """
+    Calcule l'intégrale de f sur [a,b] avec une précision eps
+    en utilisant la méthode meth.
+    Paramètres:
+    - f: fonction à intégrer
+    - a: borne inférieure de l'intervalle
+    - b: borne supérieure de l'intervalle
+    - eps: précision souhaitée
+    - meth: méthode d'intégration (une fonction)
+    Retourne:
+    - l'intégrale de f sur [a,b] avec une précision eps
+    """
 
+    N = 10000 # nombre d'itérations maximal
+    i = 1
+    while (i < N):
+        In = meth(f, a, b, i)
+        In_p1 = meth(f, a, b, i*2)
+        if math.abs(In - In_p1) < eps:
+            return In_p1
+        i *= 2
+    return In
 
 
 

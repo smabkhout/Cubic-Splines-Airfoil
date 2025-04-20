@@ -20,6 +20,25 @@ vitesse.
 Les variations de pression sont uniquement liées aux variations de vitesse de l'air vu qu'on supposera
  que $P$ est constante sur la zone d'étude.
 
-La vitesse de l'air est calculée en utilisant le principe que le temps de parcours est constant pour 
-toutes les lignes de courant, quelle que soit leur longueur. Ainsi, $V$ est inversement 
-proportionnelle à $L$, la longueur d'une ligne de courant.
+ Après avoir modélisé l'écoulement laminaire autour du profil d'aile et défini les lignes de courant 
+ paramétrées par $\lambda$, nous avons calculé la vitesse de l'air en chaque point en utilisant 
+ la relation inverse entre la longueur de la ligne de courant et la vitesse. Cette relation 
+ découle du principe que le temps de parcours est constant pour toutes les lignes de courant, 
+ de l'avant à l'arrière de l'aile.
+
+ La carte de pression de la figure \ref{pressure}  représente la distribution de la pression 
+ statique autour du profil d'aile, permettant de visualiser les zones de haute et basse pression 
+ responsables de la portance.
+ \begin{figure}[H]
+    \centering
+    \includegraphics[width=0.8\linewidth]{rapport/chapters/pressure_map.png}
+    \caption{Carte de pression autour du profil de l'aile}
+    \label{pressure}
+\end{figure}
+ 
+ Elle illustre clairement les principes aérodynamiques fondamentaux. On observe une zone de basse 
+ pression (en bleu) au-dessus de l'aile, correspondant à une vitesse d'écoulement plus élevée. 
+ En dessous de l'aile, nous observons une zone de haute pression (en rouge), où l'air circule 
+ plus lentement.
+ Cette différence de pression crée la force de portance qui maintient l'avion en vol.
+ 

@@ -3,8 +3,11 @@
 \usepackage[french]{babel}
 \usepackage[utf8]{inputenc}
 
+\usepackage[T1]{fontenc}
+\usepackage{float}
 \usepackage{amsmath}
-
+\usepackage{graphicx}
+\usepackage{hyperref}
 
 %%%%%%%%%%%%%%%% Lengths %%%%%%%%%%%%%%%%
 \setlength{\textwidth}{15.5cm}
@@ -13,7 +16,7 @@
 
 %%%%%%%%%%%%%%%% Variables %%%%%%%%%%%%%%%%
 \def\projet{3}
-\def\titre{Méthodes d'interpolation et d'intégration / Splines cubiques et interpolation de surface}
+\def\titre{Méthodes d’interpolation et d’intégration/ Splines cubiques et interpolation de surface}
 \def\groupe{1}
 \def\equipe{2}
 \def\responsible{Rafiq Amrar}
@@ -42,7 +45,7 @@
   \vskip 4mm ~
 
   ~~~\parbox{0.95\textwidth}{\small \textit{Résumé~:} \sffamily Ce projet porte sur la mise en œuvre de 
-  méthodes numériques d’interpolation et d’intégration. Il comporte deux étapes préliminaires : 
+  méthodes numériques d’interpolation et d’intégration. Il comporte deux étapes préliminaires: 
   l’interpolation de fonctions à l’aide de splines cubiques, puis l’implémentation de méthodes d’intégration 
   pour évaluer des fonctions données. Ces outils seront ensuite appliqués à l’étude d’un profil d’aile, 
   afin de modéliser l’écoulement de l’air et construire une carte de pression autour de l’extrados et de 

@@ -30,14 +30,14 @@ S_i(x) = a_i(x - x_i)^3 + b_i(x - x_i)^2 + c_i(x - x_i) + d_i
 
 \section*{Source des données}
 
-Pour travailler sur un modèle crédible et représentatif, nous nous sommes appuyés sur la base de données fournie par le \textbf{UIUC Applied Aerodynamics Group}\footnote{\url{https://m-selig.ae.illinois.edu/ads/coord_database.html}}, qui regroupe un large éventail de profils aérodynamiques validés. Cette ressource nous a permis d’appliquer et de tester efficacement notre approche algorithmique \hypref{sec:algorithm}.
+Pour travailler sur un modèle crédible et représentatif, nous nous sommes appuyés sur la base de données fournie par le \textbf{UIUC Applied Aerodynamics Group}\footnote{\url{https://m-selig.ae.illinois.edu/ads/coord_database.html}}, qui regroupe un large éventail de profils aérodynamiques validés. Cette ressource nous a permis d’appliquer et de tester efficacement \hyperref[sec:algorithm]{notre approche algorithmique}.
 
 \subsection*{Airfoil coordinates}
 \textbf{bacnlf.dat \ Boeing high speed natural laminar flow airfoil from a European patent (EP 0111785A1)}
 
 \begin{figure}[H]
     \centering
-    \includegraphics[width=0.8\textwidth]{airfol_coordinate.png}
+    \includegraphics[width=0.5\textwidth]{rapport/chapters/airfol_coordinate.png}
     \caption{coordinates of the airfoil}
     \label{fig:airfoil}
 
@@ -45,7 +45,7 @@ Pour travailler sur un modèle crédible et représentatif, nous nous sommes app
 
 \vspace{1cm}
 
-\subsection{algorithmique de raffinement}
+\subsection{Algorithmique de raffinement}
 \label{sec:algorithm}
 L’algorithme de spline cubique permet de transformer les coordonn´ees discr`etes de l’airfoil en une courbe
 continue et lisse, adapt´ee `a des simulations a´erodynamiques. En ´evaluant cette spline sur un ensemble dense
@@ -53,7 +53,7 @@ de points, on obtient une approximation fid`ele du profil de l’airfoil, comme 
 
 \begin{figure}[H]
     \centering
-    \includegraphics[width=0.8\textwidth]{airfoil.png}
+    \includegraphics[width=0.5\textwidth]{rapport/chapters/airfoil.png}
     \caption{spline of the airfoil}
     \label{fig:airfoil_spline}
 

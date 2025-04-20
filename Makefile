@@ -13,3 +13,4 @@ clean:
 	find . -name "*.log" -delete
 	find . -name "*.aux" -delete
 	find . -name "*~" -delete
+	find . -name "*.pdf" -delete

@@ -86,6 +86,32 @@ def read_numpy_blocks_from_script(file_path, script_path="./script.sh"):
             arrays.append(numbers)
     return arrays
 
+
+
+def test_known_polynomial():
+    x_test = np.linspace(0, 1, 10)
+    y_test = x_test**3 - 2*x_test**2 + x_test  # Fonction polynomiale de degré 3
+
+    coeffs = cubic_spline(x_test, y_test)
+    x_dense = np.linspace(0, 1, 1000)
+    y_true = x_dense**3 - 2*x_dense**2 + x_dense
+    y_spline = evaluate_spline(x_dense, x_test, coeffs)
+
+    error = np.abs(y_spline - y_true)
+    max_error = np.max(error)
+    print(f"Erreur  (fonction test) : {max_error:.2e}")
+
+    plt.plot(x_dense, y_true, label="Vraie fonction", linestyle='dashed')
+    plt.plot(x_dense, y_spline, label="Spline cubique")
+    plt.scatter(x_test, y_test, color='red', label="Points")
+    plt.legend()
+    plt.title("Validation sur fonction polynomiale")
+    plt.show()
+test_known_polynomial()
+
+
+
+
 arrays = read_numpy_blocks_from_script("file.txt")
 
 extrados_x, extrados_y = arrays[2], arrays[3]
@@ -121,3 +147,10 @@ plt.plot(x_dense, y_dense, label="Spline cubique", color='blue')
 plt.legend()
 plt.axis('equal')
 plt.show()
+
+# test calculer l'erreur
+# Calcul de l'erreur entre la spline et les points d'origine
+error = np.abs(y_dense - evaluate_spline(x_dense, x, coefficients)) 
+max_error = np.max(error)
+print(f"Erreur maximale : {max_error:.2e}")
+# Affichage de l'erreur

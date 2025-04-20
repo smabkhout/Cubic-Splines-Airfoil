@@ -135,22 +135,24 @@ coefficients_intra = cubic_spline(intrados_x, intrados_y)
 x_intra_dense = np.linspace(intrados_x[0], intrados_x[-1], 100)
 y_intra_dense = evaluate_spline(x_intra_dense, intrados_x, coefficients_intra)
 
-# Affichage de l'intrados
-plt.plot(x_intra_dense, y_intra_dense, label="Spline intrados", color='green')
-plt.scatter(intrados_x, intrados_y, color='orange', label="Points intrados")
+if __name__ == "__main__":
+
+    # Affichage de l'intrados
+    plt.plot(x_intra_dense, y_intra_dense, label="Spline intrados", color='green')
+    plt.scatter(intrados_x, intrados_y, color='orange', label="Points intrados")
 
 
 
-# Affichage du résultat
-plt.scatter(x, y, color='red', label="Points donnés")
-plt.plot(x_dense, y_dense, label="Spline cubique", color='blue')
-plt.legend()
-plt.axis('equal')
-plt.show()
+    # Affichage du résultat
+    plt.scatter(x, y, color='red', label="Points donnés")
+    plt.plot(x_dense, y_dense, label="Spline cubique", color='blue')
+    plt.legend()
+    plt.axis('equal')
+    plt.show()
 
-# test calculer l'erreur
-# Calcul de l'erreur entre la spline et les points d'origine
-error = np.abs(y_dense - evaluate_spline(x_dense, x, coefficients)) 
-max_error = np.max(error)
-print(f"Erreur maximale : {max_error:.2e}")
-# Affichage de l'erreur
+    # test calculer l'erreur
+    # Calcul de l'erreur entre la spline et les points d'origine
+    error = np.abs(y_dense - evaluate_spline(x_dense, x, coefficients)) 
+    max_error = np.max(error)
+    print(f"Erreur maximale : {max_error:.2e}")
+    # Affichage de l'erreur

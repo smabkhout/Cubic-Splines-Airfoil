@@ -1,2 +1,25 @@
-\section{Modelling the airflow / Pressure map }
+\section{Modélisation de l'aiflow et carte de pression}
 \label{sec:pressure}
+
+Dans cette partie, nous cherchons à modéliser l'écoulement d'air autour d'un profil d'aile et 
+à calculer la distribution de pression résultante. On fait l'hypothèse d'un écoulement laminaire 
+où l'air se déplace le long de trajectoires non-intersectantes. 
+
+Nous limitons la zone d'influence de l'aile à un intervalle où les lignes de courant suivent 
+des courbes dont la forme varie progressivement entre celle du profil d'aile et une ligne 
+horizontale.
+
+Afin de réaliser ceci, nous aurons besoin de calculer la pression de l'air en utilisant la loi 
+de Bernoulli: 
+
+
+$ P = P_s + P_d$ avec $P_d = \frac{1}{2} \times \rho \times V²$
+où $P_s$ est la pression statique, $P_d$ la pression dynamique, $\rho$ la densité de l'air et $V$ sa 
+vitesse.
+
+Les variations de pression sont uniquement liées aux variations de vitesse de l'air vu qu'on supposera
+ que $P$ est constante sur la zone d'étude.
+
+La vitesse de l'air est calculée en utilisant le principe que le temps de parcours est constant pour 
+toutes les lignes de courant, quelle que soit leur longueur. Ainsi, $V$ est inversement 
+proportionnelle à $L$, la longueur d'une ligne de courant.

@@ -178,14 +178,15 @@ def test_tan(a,b,eps):
     print("la valeur donnée par la méthode de Simpson",integration_epsilon(tan,a,b,eps,integration_n_simpson))
 
 
+if __name__ == "__main__":
 
-a=3
-b=19
-eps=10**(-3)
-test_poly(3,19,10**(-3))
-test_cos(3,19,10**(-3))
-test_sin(3,19,10**(-3))
-test_tan(3,19,10**(-3))
+    a=3
+    b=19
+    eps=10**(-3)
+    test_poly(3,19,10**(-3))
+    test_cos(3,19,10**(-3))
+    test_sin(3,19,10**(-3))
+    test_tan(3,19,10**(-3))
 
 #Question4
 #retirer les valeurs des méthodes à chaque fois
@@ -215,107 +216,110 @@ def integration_epsilon_valeurs( f, a, b, eps, meth ):
         i *= 2
         l+=[In]
     return l
-#Cas left rectangle
-# Calculer les valeurs d'intégration pour chaque fonction
-valeurs_f1 = integration_epsilon_valeurs(cos, a, b, eps, integration_n_left_rec)
-valeurs_f2 = integration_epsilon_valeurs(tan, a, b, eps, integration_n_left_rec)
-valeurs_f3 = integration_epsilon_valeurs(poly_4, a, b, eps, integration_n_left_rec)
 
-# Tracer les résultats
-plt.figure(figsize=(10, 6))
+if __name__ == "__main__":
 
-plt.plot(valeurs_f1, label=r"$\cos(x)$", color='blue', marker='o')
-plt.plot(valeurs_f2, label=r"$\tan(x)$", color='red', marker='x')
-plt.plot(valeurs_f3, label=r"$poly_4(x)$", color='green', marker='s')
+    #Cas left rectangle
+    # Calculer les valeurs d'intégration pour chaque fonction
+    valeurs_f1 = integration_epsilon_valeurs(cos, a, b, eps, integration_n_left_rec)
+    valeurs_f2 = integration_epsilon_valeurs(tan, a, b, eps, integration_n_left_rec)
+    valeurs_f3 = integration_epsilon_valeurs(poly_4, a, b, eps, integration_n_left_rec)
 
-plt.xlabel("Nombre d'itérations")
-plt.ylabel("Valeur de l'intégrale pour le cas left rectangle")
-plt.title("Convergence des intégrales pour différentes fonctions")
-plt.legend()
-plt.grid(True)
 
-#plt.show()
+        # Tracer les résultats
+    plt.figure(figsize=(10, 6))
 
-#Cas right rectangle
-# Calculer les valeurs d'intégration pour chaque fonction
-valeurs_f1 = integration_epsilon_valeurs(cos, a, b, eps, integration_n_right_rec)
-valeurs_f2 = integration_epsilon_valeurs(tan, a, b, eps, integration_n_right_rec)
-valeurs_f3 = integration_epsilon_valeurs(poly_4, a, b, eps, integration_n_right_rec)
+    plt.plot(valeurs_f1, label=r"$\cos(x)$", color='blue', marker='o')
+    plt.plot(valeurs_f2, label=r"$\tan(x)$", color='red', marker='x')
+    plt.plot(valeurs_f3, label=r"$poly_4(x)$", color='green', marker='s')
+    plt.xlabel("Nombre d'itérations")
+    plt.ylabel("Valeur de l'intégrale pour le cas left rectangle")
+    plt.title("Convergence des intégrales pour différentes fonctions")
+    plt.legend()
+    plt.grid(True)
 
-# Tracer les résultats
-plt.figure(figsize=(10, 6))
+    #plt.show()
 
-plt.plot(valeurs_f1, label=r"$\cos(x)$", color='blue', marker='o')
-plt.plot(valeurs_f2, label=r"$\tan(x)$", color='red', marker='x')
-plt.plot(valeurs_f3, label=r"$poly_4(x)$", color='green', marker='s')
+    #Cas right rectangle
+    # Calculer les valeurs d'intégration pour chaque fonction
+    valeurs_f1 = integration_epsilon_valeurs(cos, a, b, eps, integration_n_right_rec)
+    valeurs_f2 = integration_epsilon_valeurs(tan, a, b, eps, integration_n_right_rec)
+    valeurs_f3 = integration_epsilon_valeurs(poly_4, a, b, eps, integration_n_right_rec)
 
-plt.xlabel("Nombre d'itérations")
-plt.ylabel("Valeur de l'intégrale pour la méthode right rectangle")
-plt.title("Convergence des intégrales pour différentes fonctions")
-plt.legend()
-plt.grid(True)
+    # Tracer les résultats
+    plt.figure(figsize=(10, 6))
 
-plt.show()
+    plt.plot(valeurs_f1, label=r"$\cos(x)$", color='blue', marker='o')
+    plt.plot(valeurs_f2, label=r"$\tan(x)$", color='red', marker='x')
+    plt.plot(valeurs_f3, label=r"$poly_4(x)$", color='green', marker='s')
 
-#Cas trapezoid
-# Calculer les valeurs d'intégration pour chaque fonction
-valeurs_f1 = integration_epsilon_valeurs(cos, a, b, eps, integration_n_trapezoid)
-valeurs_f2 = integration_epsilon_valeurs(tan, a, b, eps, integration_n_trapezoid)
-valeurs_f3 = integration_epsilon_valeurs(poly_4, a, b, eps, integration_n_trapezoid)
+    plt.xlabel("Nombre d'itérations")
+    plt.ylabel("Valeur de l'intégrale pour la méthode right rectangle")
+    plt.title("Convergence des intégrales pour différentes fonctions")
+    plt.legend()
+    plt.grid(True)
 
-# Tracer les résultats
-plt.figure(figsize=(10, 6))
+    plt.show()
 
-plt.plot(valeurs_f1, label=r"$\cos(x)$", color='blue', marker='o')
-plt.plot(valeurs_f2, label=r"$\tan(x)$", color='red', marker='x')
-plt.plot(valeurs_f3, label=r"$poly_4(x)$", color='green', marker='s')
+    #Cas trapezoid
+    # Calculer les valeurs d'intégration pour chaque fonction
+    valeurs_f1 = integration_epsilon_valeurs(cos, a, b, eps, integration_n_trapezoid)
+    valeurs_f2 = integration_epsilon_valeurs(tan, a, b, eps, integration_n_trapezoid)
+    valeurs_f3 = integration_epsilon_valeurs(poly_4, a, b, eps, integration_n_trapezoid)
 
-plt.xlabel("Nombre d'itérations")
-plt.ylabel("Valeur de l'intégrale pour le cas du trapèze")
-plt.title("Convergence des intégrales pour différentes fonctions")
-plt.legend()
-plt.grid(True)
+    # Tracer les résultats
+    plt.figure(figsize=(10, 6))
 
-#plt.show()
+    plt.plot(valeurs_f1, label=r"$\cos(x)$", color='blue', marker='o')
+    plt.plot(valeurs_f2, label=r"$\tan(x)$", color='red', marker='x')
+    plt.plot(valeurs_f3, label=r"$poly_4(x)$", color='green', marker='s')
 
-#Cas middle point
-# Calculer les valeurs d'intégration pour chaque fonction
-valeurs_f1 = integration_epsilon_valeurs(cos, a, b, eps, integration_n_middle_point)
-valeurs_f2 = integration_epsilon_valeurs(tan, a, b, eps, integration_n_middle_point)
-valeurs_f3 = integration_epsilon_valeurs(poly_4, a, b, eps, integration_n_middle_point)
+    plt.xlabel("Nombre d'itérations")
+    plt.ylabel("Valeur de l'intégrale pour le cas du trapèze")
+    plt.title("Convergence des intégrales pour différentes fonctions")
+    plt.legend()
+    plt.grid(True)
 
-# Tracer les résultats
-plt.figure(figsize=(10, 6))
+    #plt.show()
 
-plt.plot(valeurs_f1, label=r"$\cos(x)$", color='blue', marker='o')
-plt.plot(valeurs_f2, label=r"$\tan(x)$", color='red', marker='x')
-plt.plot(valeurs_f3, label=r"$poly_4(x)$", color='green', marker='s')
+    #Cas middle point
+    # Calculer les valeurs d'intégration pour chaque fonction
+    valeurs_f1 = integration_epsilon_valeurs(cos, a, b, eps, integration_n_middle_point)
+    valeurs_f2 = integration_epsilon_valeurs(tan, a, b, eps, integration_n_middle_point)
+    valeurs_f3 = integration_epsilon_valeurs(poly_4, a, b, eps, integration_n_middle_point)
 
-plt.xlabel("Nombre d'itérations")
-plt.ylabel("Valeur de l'intégrale pour le cas du point milieu")
-plt.title("Convergence des intégrales pour différentes fonctions")
-plt.legend()
-plt.grid(True)
+    # Tracer les résultats
+    plt.figure(figsize=(10, 6))
 
-#plt.show()
+    plt.plot(valeurs_f1, label=r"$\cos(x)$", color='blue', marker='o')
+    plt.plot(valeurs_f2, label=r"$\tan(x)$", color='red', marker='x')
+    plt.plot(valeurs_f3, label=r"$poly_4(x)$", color='green', marker='s')
 
-#Cas simpson
-# Calculer les valeurs d'intégration pour chaque fonction
-valeurs_f1 = integration_epsilon_valeurs(cos, a, b, eps, integration_n_simpson)
-valeurs_f2 = integration_epsilon_valeurs(tan, a, b, eps, integration_n_simpson)
-valeurs_f3 = integration_epsilon_valeurs(poly_4, a, b, eps, integration_n_simpson)
+    plt.xlabel("Nombre d'itérations")
+    plt.ylabel("Valeur de l'intégrale pour le cas du point milieu")
+    plt.title("Convergence des intégrales pour différentes fonctions")
+    plt.legend()
+    plt.grid(True)
 
-# Tracer les résultats
-plt.figure(figsize=(10, 6))
+    #plt.show()
 
-plt.plot(valeurs_f1, label=r"$\cos(x)$", color='blue', marker='o')
-plt.plot(valeurs_f2, label=r"$\tan(x)$", color='red', marker='x')
-plt.plot(valeurs_f3, label=r"$poly_4(x)$", color='green', marker='s')
+    #Cas simpson
+    # Calculer les valeurs d'intégration pour chaque fonction
+    valeurs_f1 = integration_epsilon_valeurs(cos, a, b, eps, integration_n_simpson)
+    valeurs_f2 = integration_epsilon_valeurs(tan, a, b, eps, integration_n_simpson)
+    valeurs_f3 = integration_epsilon_valeurs(poly_4, a, b, eps, integration_n_simpson)
 
-plt.xlabel("Nombre d'itérations")
-plt.ylabel("Valeur de l'intégrale pour le cas Simpson")
-plt.title("Convergence des intégrales pour différentes fonctions")
-plt.legend()
-plt.grid(True)
+    # Tracer les résultats
+    plt.figure(figsize=(10, 6))
 
-#plt.show()
+    plt.plot(valeurs_f1, label=r"$\cos(x)$", color='blue', marker='o')
+    plt.plot(valeurs_f2, label=r"$\tan(x)$", color='red', marker='x')
+    plt.plot(valeurs_f3, label=r"$poly_4(x)$", color='green', marker='s')
+
+    plt.xlabel("Nombre d'itérations")
+    plt.ylabel("Valeur de l'intégrale pour le cas Simpson")
+    plt.title("Convergence des intégrales pour différentes fonctions")
+    plt.legend()
+    plt.grid(True)
+
+    #plt.show()

@@ -1,12 +1,12 @@
-\section{Airfoil refinement}
+\section{Raffinement de l'airfoil (Aile)} 
 \label{sec:airfoil}
 \subsection{Introduction}
 Le raffinement du profil aérodynamique est une étape cruciale dans le processus de conception d’un aéronef. La forme du profil influence directement les caractéristiques de portance et de traînée, qui sont essentielles pour les performances de l’appareil. Dans cette section, nous allons aborder le processus de raffinement du profil utilisé.
 Pour interpoler les points du profil aérodynamique de manière suffisamment lisse, nous utilisons des splines cubiques. Cette méthode relie les points à l’aide de segments polynomiaux définis par morceaux, chacun étant d’un degré inférieur ou égal à 3. La courbe obtenue assure une transition fluide entre les segments en garantissant la continuité de la courbe elle-même, ainsi que celle de sa première et de sa deuxième dérivée aux points de jonction.
 
-\subsubsection{CUBIC SPLINE INTERPOLATION}
+\subsubsection*{Interpolation par splines cubiques}
 \label{sec:cubic_spline_interpolation}
-\section*{Definition general}
+%\section*{Definition general}
 Une \textbf{spline cubique} est une fonction composée de morceaux de polynômes de degré 3, construits pour interpoler un ensemble de points donnés :
 \[
 (x_0, y_0), (x_1, y_1), \dots, (x_n, y_n)
@@ -26,18 +26,18 @@ où chaque $S_i(x)$ est un polynôme cubique de la forme :
 S_i(x) = a_i(x - x_i)^3 + b_i(x - x_i)^2 + c_i(x - x_i) + d_i
 \]
 
-\subsection{Airfoil shape}
+\subsection{Forme de l'airfoil}
 
-\section*{Source des données}
+\section*{Source de données}
 
 Pour travailler sur un modèle crédible et représentatif, nous nous sommes appuyés sur la base de données fournie par le \textbf{UIUC Applied Aerodynamics Group}\footnote{\url{https://m-selig.ae.illinois.edu/ads/coord_database.html}}, qui regroupe un large éventail de profils aérodynamiques validés. Cette ressource nous a permis d’appliquer et de tester efficacement \hyperref[sec:algorithm]{notre approche algorithmique}.
 
-\subsection*{Airfoil coordinates}
+\subsection*{Coordonnées de l' airfoil}
 \textbf{bacnlf.dat \ Boeing high speed natural laminar flow airfoil from a European patent (EP 0111785A1)}
 
-\begin{figure}[h]
+\begin{figure}[H]
     \centering
-    \includegraphics[width=0.5\textwidth]{rapport/chapters/airfol_coordinate.png}
+    \includegraphics[width=0.35\textwidth]{rapport/chapters/airfol_coordinate.png}
     \caption{coordinates of the airfoil}
     \label{fig:airfoil}
 
@@ -51,12 +51,12 @@ L’algorithme de spline cubique permet de transformer les coordonn´ees discr`e
 continue et lisse, adapt´ee `a des simulations a´erodynamiques. En ´evaluant cette spline sur un ensemble dense
 de points, on obtient une approximation fid`ele du profil de l’airfoil, comme montr´e dans la figure ci-dessous.
 
-\begin{figure}[h]
+\begin{figure}[H]
     \centering
     \includegraphics[width=0.5\textwidth]{rapport/chapters/airfoil.png}
     \caption{spline of the airfoil}
     \label{fig:airfoil_spline}
 
 \end{figure}
-\subsection{Conclusion}
+% \subsection{Conclusion}
 Le raffinement du profil aérodynamique est une étape essentielle dans la conception d’un aéronef. En utilisant des splines cubiques, nous avons pu obtenir une représentation lisse et continue du profil, ce qui est crucial pour les simulations aérodynamiques. La base de données UIUC a été une ressource précieuse pour valider notre approche algorithmique. Les résultats obtenus montrent que notre méthode est efficace pour transformer des coordonnées discrètes en une courbe continue, adaptée aux besoins de l’aérodynamique.

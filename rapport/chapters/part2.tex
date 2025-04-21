@@ -1,2 +1,95 @@
-\section{Computing the length of plane curves}
+tree\section{Computing the length of plane curves}
 \label{sec:curves}
+
+Dans cette section, nous présentons les différentes méthodes d’intégration numérique mises en œuvre pour approximer la longueur d’un profil d’aile à partir de fonctions interpolées (splines cubiques). Ce travail est essentiel pour l’évaluation des pressions exercées sur les deux faces de l’aile.
+
+La longueur d'une courbe définie par une fonction $f(x)$ dérivable sur un intervalle $[a, b]$ est donnée par la formule :
+
+\[
+L([a, b]) = \int_a^b \sqrt{1 + (f'(x))^2} \, dx
+\]
+
+Pour calculer cette intégrale, nous avons implémenté cinq méthodes classiques d’intégration numérique, ainsi qu'une version adaptative basée sur un critère de précision $\varepsilon$.
+
+\subsection{Méthodes utilisées}
+
+Les méthodes implémentées sont les suivantes :
+
+\begin{itemize}
+    \item Rectangle à gauche
+    \item Rectangle à droite
+    \item Point milieu
+    \item Trapèzes
+    \item Simpson
+\end{itemize}
+
+Chaque méthode a été conçue pour être utilisée de manière générique, c’est-à-dire en tant que paramètre dans une fonction adaptative.
+
+\subsubsection*{Méthode adaptative à $\varepsilon$}
+
+Nous avons également développé une fonction itérative qui utilise chaque méthode d'intégration jusqu'à atteindre une précision définie. Elle compare les résultats obtenus avec $N$ et $2N$ sous-intervalles :
+
+\[
+|I_N - I_{2N}| < \varepsilon
+\]
+
+\subsection{Fonctions testées}
+
+Nous avons testé les méthodes sur plusieurs fonctions de référence :
+
+\begin{itemize}
+    \item Polynôme de degré 4 : $f(x) = x^4 + 3x^2 + 9x - 3$
+    \item Fonctions trigonométriques : $\cos(x)$, $\sin(x)$
+    \item Fonction tangente : $\tan(x)$ (hors points de discontinuité)
+\end{itemize}
+
+\subsection{Analyse de la convergence}
+
+Nous avons représenté graphiquement la convergence des différentes méthodes en fonction du nombre d’itérations (sous-intervalles) nécessaires pour atteindre une précision $\varepsilon = 10^{-3}$.
+
+Les graphiques suivants illustrent les résultats :
+
+\begin{figure}[H]
+    \centering
+
+    \begin{subfigure}[t]{0.48\textwidth}
+        \centering
+        \includegraphics[width=\linewidth]{rapport/chapters/trapezoid.png}
+        \caption{Méthode des trapèzes}
+    \end{subfigure}
+    \hfill
+    \begin{subfigure}[t]{0.48\textwidth}
+        \centering
+        \includegraphics[width=\linewidth]{rapport/chapters/middlepoint.png}
+        \caption{Méthode du point milieu}
+    \end{subfigure}
+
+    \vspace{0.5cm}
+
+    \begin{subfigure}[t]{0.48\textwidth}
+        \centering
+        \includegraphics[width=\linewidth]{rapport/chapters/Figure_2.png}
+        \caption{Méthode des rectangles à droite}
+    \end{subfigure}
+    \hfill
+    \begin{subfigure}[t]{0.48\textwidth}
+        \centering
+        \includegraphics[width=\linewidth]{rapport/chapters/simpson.png}
+        \caption{Méthode de Simpson}
+    \end{subfigure}
+
+    \caption{Convergence des différentes méthodes d'intégration numérique}
+    \label{fig:convergence-methods}
+\end{figure}
+
+Les résultats confirment que :
+\begin{itemize}
+    \item La méthode de Simpson offre la meilleure convergence et précision.
+    \item Les méthodes rectangles sont simples mais nécessitent beaucoup plus de subdivisions pour une même précision.
+    \item Le point milieu est une bonne alternative en termes de compromis.
+\end{itemize}
+
+\subsection{Conclusion}
+
+Cette étude montre que les méthodes d'intégration numérique peuvent être efficacement utilisées pour estimer des intégrales complexes, comme celles apparaissant dans le calcul de la longueur d’un profil d’aile. La méthode de Simpson est à privilégier lorsque la précision est cruciale, tandis que les autres peuvent être utilisées à des fins exploratoires ou pour des fonctions plus simples.
+
